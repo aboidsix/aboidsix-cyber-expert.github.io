@@ -1,1 +1,509 @@
+<!DOCTYPE html>  
+<html lang="bn">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+  <title>Cyber Security Expert - Zexon</title>  
+  <link rel="preconnect" href="https://fonts.googleapis.com">  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>  
+  
+  <style>  
+    * {  
+      margin: 0;  
+      padding: 0;  
+      box-sizing: border-box;  
+    }    
+    
+    :root {  
+      --neon-cyan: #00f3ff;  
+      --neon-emerald: #00ffa3;  
+      --neon-purple: #8b5cf6;  
+      --cyber-dark: #030712;  
+      --card-bg: rgba(15, 23, 42, 0.75);  
+      --card-border: rgba(0, 243, 255, 0.2);  
+      --text-main: #f8fafc;  
+      --text-muted: #94a3b8;  
+      --gradient-cyber: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    }  
 
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      background: var(--cyber-dark);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* CYBER CANVAS BACKGROUND */
+    #cyberCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      width: min(860px, 92%);
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      padding: 30px 0 60px;
+    }
+
+    /* PROFILE HEADER */
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 30px 20px;
+      border-radius: 24px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 243, 255, 0.05);
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      margin-bottom: 16px;
+    }
+
+    .avatar-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: var(--gradient-cyber);
+      animation: rotateGlow 4s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes rotateGlow {
+      0% { transform: rotate(0deg); filter: blur(8px); }
+      50% { filter: blur(12px); }
+      100% { transform: rotate(360deg); filter: blur(8px); }
+    }
+
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--cyber-dark);
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #ffffff, var(--neon-cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-transform: uppercase;
+    }
+
+    .hero-subtitle {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+      font-weight: 700;
+      color: var(--neon-cyan);
+      letter-spacing: 3px;
+      margin-top: 6px;
+      text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+    }
+
+    /* PANELS */
+    .panel {
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 28px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      margin-top: 25px;
+    }
+
+    .panel-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .panel-title i {
+      color: var(--neon-cyan);
+      filter: drop-shadow(0 0 8px var(--neon-cyan));
+    }
+
+    /* SOCIAL BUTTONS GRID */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .social-btn i {
+      font-size: 20px;
+      color: var(--neon-cyan);
+      transition: 0.3s ease;
+    }
+
+    .social-btn:hover {
+      background: rgba(0, 243, 255, 0.1);
+      border-color: var(--neon-cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 243, 255, 0.2);
+    }
+
+    .social-btn:hover i {
+      transform: scale(1.15);
+      color: #fff;
+    }
+
+    /* FORM STYLING */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .input-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      outline: none;
+      border-radius: 14px;
+      padding: 16px;
+      background: rgba(3, 7, 18, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      font-size: 15px;
+      font-family: 'JetBrains Mono', monospace;
+      transition: 0.3s ease;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.25);
+      background: rgba(3, 7, 18, 0.95);
+    }
+
+    select option {
+      background: var(--cyber-dark);
+      color: #fff;
+    }
+
+    textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      border: none;
+      outline: none;
+      padding: 18px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      cursor: pointer;
+      color: #000;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-emerald));
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 255, 163, 0.6);
+    }
+
+    .submit-btn i {
+      font-size: 20px;
+    }
+
+    @media (max-width: 640px) {
+      .social-grid {
+        grid-template-columns: 1fr;
+      }
+      .panel {
+        padding: 20px;
+      }
+    }
+  </style>  
+</head>  
+<body>  
+
+  <!-- HIGH-TECH CANVAS BACKGROUND -->
+  <canvas id="cyberCanvas"></canvas>    
+
+  <div class="container">  
+    
+    <!-- HEADER SECTION -->
+    <header class="profile-card">  
+      <div class="avatar-wrapper">  
+        <img src="Picsart_26-07-20_02-36-53-570.jpg" alt="Zexon Profile">  
+      </div>  
+      <h1 class="hero-title">CYBER SECURITY EXPERT</h1>  
+      <p class="hero-subtitle">YOUR XAMAI ZEXON</p>  
+    </header>  
+
+    <!-- SOCIAL LINKS -->
+    <section class="panel">  
+      <h2 class="panel-title">  
+        <i class="fa-solid fa-shield-halved"></i>  
+        Official Handles & Contact
+      </h2>  
+
+      <div class="social-grid">
+        <!-- Facebook -->    
+        <a class="social-btn" href="https://www.facebook.com/share/1HLVnAtnoT/" target="_blank">  
+          <i class="fa-brands fa-facebook-f"></i>  
+          <span>Facebook</span>  
+        </a>    
+
+        <!-- TikTok (NEW LINK) -->    
+        <a class="social-btn" href="https://www.tiktok.com/@mexux0?_r=1&_t=ZS-98RnKN4mTc0" target="_blank">  
+          <i class="fa-brands fa-tiktok"></i>  
+          <span>TikTok</span>  
+        </a>  
+
+        <!-- Instagram (NEW LINK) -->    
+        <a class="social-btn" href="https://www.instagram.com/aboidsix_?igsh=MW92ZmJ6cTV6YXV2cg==" target="_blank">  
+          <i class="fa-brands fa-instagram"></i>  
+          <span>Instagram</span>  
+        </a>    
+
+        <!-- WhatsApp Support -->    
+        <a class="social-btn" href="https://wa.me/8801718900656" target="_blank">  
+          <i class="fa-brands fa-whatsapp"></i>  
+          <span>WhatsApp Chat</span>  
+        </a>  
+      </div>  
+    </section>  
+
+    <!-- SUPPORT FORM -->
+    <section class="panel">  
+      <h2 class="panel-title">  
+        <i class="fa-solid fa-bug"></i>  
+        Tell Us About Your Problem  
+      </h2>  
+
+      <form id="supportForm">  
+        <div class="input-wrap">  
+          <label for="name">Your Name (Optional)</label>  
+          <input type="text" id="name" name="name" placeholder="Enter your name..." />  
+        </div>  
+
+        <div class="input-wrap">  
+          <label for="service">Select Service / Issue Type</label>  
+          <select id="service" name="service" required>  
+            <option value="">-- Choose a category --</option>  
+            <option>TikTok Account Recovery</option>  
+            <option>TikTok Suspended Account Appeal Help</option>  
+            <option>TikTok Disabled Account Recovery</option>  
+            <option>TikTok Username / Login Issue</option>  
+            <option>TikTok Verification / Security Guidance</option>  
+            <option>Facebook Disabled Account Recovery</option>  
+            <option>Facebook Hacked Account Help</option>  
+            <option>Facebook Page Access Issue</option>  
+            <option>Facebook Business Manager Access Help</option>  
+            <option>Facebook Login / Password Problem</option>  
+            <option>Instagram Disabled Account Recovery</option>  
+            <option>Instagram Hacked Account Help</option>  
+            <option>Instagram Login Issue</option>  
+            <option>Instagram Username / Email Change Help</option>  
+            <option>Instagram Appeal Guidance</option>  
+            <option>WhatsApp Account Banned Support</option>  
+            <option>WhatsApp Verification Problem</option>  
+            <option>WhatsApp Number / Access Issue</option>  
+            <option>WhatsApp Business Account Help</option>  
+            <option>WhatsApp Backup / Restore Guidance</option>  
+            <option>Gmail Account Recovery Help</option>  
+            <option>Google Disabled / Locked Account Help</option>  
+            <option>Google Verification Problem</option>  
+            <option>Google Password Reset Support</option>  
+            <option>YouTube Channel Access Problem</option>  
+            <option>YouTube Copyright / Strike Guidance</option>  
+            <option>YouTube Suspended Channel Appeal Help</option>  
+            <option>Telegram Account Access Issue</option>  
+            <option>Telegram Login / Number Problem</option>  
+            <option>Messenger Login / Recovery Help</option>  
+            <option>Twitter / X Account Recovery</option>  
+            <option>Twitter / X Suspended Account Guidance</option>  
+            <option>Snapchat Login / Recovery Help</option>  
+            <option>LinkedIn Account Access Issue</option>  
+            <option>Discord Account Recovery Help</option>  
+            <option>PayPal Account Access Problem</option>  
+            <option>Binance Account Verification Help</option>  
+            <option>Website Login Panel Issue</option>  
+            <option>Domain / Hosting Access Problem</option>  
+            <option>cPanel / Hosting Login Help</option>  
+            <option>Email Recovery / Access Help</option>  
+            <option>2FA / Verification Code Problem</option>  
+            <option>Security Review / Account Safety Check</option>  
+            <option>Profile Recovery Assistance</option>  
+            <option>Password Reset / Access Guidance</option>  
+            <option>Appeal Letter / Support Message Help</option>  
+            <option>Platform Report / Complaint Guidance</option>  
+            <option>Business Account Access Issue</option>  
+            <option>Creator Account Issue Help</option>  
+            <option>General Digital Support Request</option>  
+          </select>  
+        </div>  
+
+        <div class="input-wrap">  
+          <label for="problem">Describe Your Issue</label>  
+          <textarea id="problem" name="problem" placeholder="Explain your problem in detail..." required></textarea>  
+        </div>  
+
+        <button type="submit" class="submit-btn">  
+          <i class="fa-brands fa-whatsapp"></i> Send via WhatsApp  
+        </button>  
+      </form>  
+    </section>  
+
+  </div>    
+
+  <!-- ANIMATED BACKGROUND CANVAS SCRIPT -->
+  <script>  
+    const canvas = document.getElementById("cyberCanvas");  
+    const ctx = canvas.getContext("2d");  
+      
+    function resizeCanvas() {  
+      canvas.width = window.innerWidth;  
+      canvas.height = window.innerHeight;  
+    }  
+    resizeCanvas();  
+    window.addEventListener("resize", resizeCanvas);  
+      
+    const particles = [];
+    const particleCount = 65;
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.8,
+        speedY: (Math.random() - 0.5) * 0.8,
+        opacity: Math.random() * 0.5 + 0.2
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < particles.length; i++) {
+        let p = particles[i];
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 243, 255, ${p.opacity})`;
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          let p2 = particles[j];
+          let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+
+          if (dist < 110) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(0, 243, 255, ${0.25 - dist / 440})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    /* FORM SUBMISSION WITH UPDATED WHATSAPP NUMBER & ZEXON */
+    const form = document.getElementById("supportForm");  
+    const whatsappNumber = "8801718900656";  
+      
+    form.addEventListener("submit", function(e) {  
+      e.preventDefault();  
+      
+      const name = document.getElementById("name").value.trim() || "Not Provided";  
+      const service = document.getElementById("service").value;  
+      const problem = document.getElementById("problem").value.trim();  
+      
+      if (!service || !problem) {  
+        alert("Please select a service and describe your issue.");  
+        return;  
+      }  
+      
+      const message = `Hello Zexon,\n\n🚨 *New Support Request*\n\n👤 *Name:* ${name}\n🛠️ *Service:* ${service}\n\n📝 *Problem Description:*\n${problem}`;  
+      
+      const encodedMessage = encodeURIComponent(message);  
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;  
+      
+      window.open(whatsappURL, "_blank");  
+    });  
+  </script>  
+</body>  
+  </html>
