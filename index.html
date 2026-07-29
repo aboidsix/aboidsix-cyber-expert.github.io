@@ -3,7 +3,7 @@
 <head>  
   <meta charset="UTF-8" />  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
-  <title>Cyber Security Expert - Zexon</title>  
+  <title>Cyber Security Expert - Aboidsix</title>  
   <link rel="preconnect" href="https://fonts.googleapis.com">  
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">  
@@ -106,9 +106,10 @@
 
     .hero-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-size: clamp(1.2rem, 3.2vw, 2rem);
       font-weight: 900;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
+      white-space: nowrap;
       background: linear-gradient(90deg, #ffffff, var(--neon-cyan));
       -webkit-background-clip: text;
       background-clip: text;
@@ -118,12 +119,14 @@
 
     .hero-subtitle {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+      font-size: clamp(0.85rem, 2.2vw, 1.1rem);
       font-weight: 700;
       color: var(--neon-cyan);
-      letter-spacing: 3px;
+      letter-spacing: 2.5px;
       margin-top: 6px;
+      white-space: nowrap;
       text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+      text-transform: uppercase;
     }
 
     /* PANELS */
@@ -298,10 +301,10 @@
     <!-- HEADER SECTION -->
     <header class="profile-card">  
       <div class="avatar-wrapper">  
-        <img src="Picsart_26-07-20_02-36-53-570.jpg" alt="Zexon Profile">  
+        <img src="IMG-20260725-WA0000.jpg" alt="Aboidsix Profile">  
       </div>  
       <h1 class="hero-title">CYBER SECURITY EXPERT</h1>  
-      <p class="hero-subtitle">YOUR XAMAI ZEXON</p>  
+      <p class="hero-subtitle">YOUR ABOIDSIX</p>  
     </header>  
 
     <!-- SOCIAL LINKS -->
@@ -318,13 +321,13 @@
           <span>Facebook</span>  
         </a>    
 
-        <!-- TikTok (NEW LINK) -->    
+        <!-- TikTok -->    
         <a class="social-btn" href="https://www.tiktok.com/@mexux0?_r=1&_t=ZS-98RnKN4mTc0" target="_blank">  
           <i class="fa-brands fa-tiktok"></i>  
           <span>TikTok</span>  
         </a>  
 
-        <!-- Instagram (NEW LINK) -->    
+        <!-- Instagram -->    
         <a class="social-btn" href="https://www.instagram.com/aboidsix_?igsh=MW92ZmJ6cTV6YXV2cg==" target="_blank">  
           <i class="fa-brands fa-instagram"></i>  
           <span>Instagram</span>  
@@ -481,7 +484,7 @@
     }
     animate();
 
-    /* FORM SUBMISSION WITH UPDATED WHATSAPP NUMBER & ZEXON */
+    /* FORM SUBMISSION WITH UPDATED WHATSAPP NUMBER & ABOIDSIX */
     const form = document.getElementById("supportForm");  
     const whatsappNumber = "8801718900656";  
       
@@ -497,7 +500,7 @@
         return;  
       }  
       
-      const message = `Hello Zexon,\n\n🚨 *New Support Request*\n\n👤 *Name:* ${name}\n🛠️ *Service:* ${service}\n\n📝 *Problem Description:*\n${problem}`;  
+      const message = `Hello Aboidsix,\n\n🚨 *New Support Request*\n\n👤 *Name:* ${name}\n🛠️ *Service:* ${service}\n\n📝 *Problem Description:*\n${problem}`;  
       
       const encodedMessage = encodeURIComponent(message);  
       const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;  
@@ -506,4 +509,4 @@
     });  
   </script>  
 </body>  
-  </html>
+</html>
